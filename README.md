@@ -25,8 +25,8 @@ Para ejecutar la aplicación localmente, sigue los siguientes pasos:
 1. **Clonar el repositorio**:
 
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_REPOSITORIO>
+   git clone https://github.com/MrNizzy/TODO-16.git
+   cd TODO-16
    ```
 
 2. **Instalar dependencias**:
