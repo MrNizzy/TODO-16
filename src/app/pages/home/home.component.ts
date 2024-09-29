@@ -9,6 +9,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { NewTaskDialogComponent } from 'src/app/components/new-task-dialog/new-task-dialog.component';
 import { ToastrService } from 'ngx-toastr';
 import { FilterStatusPipe } from '@pipes/filter-status.pipe';
+import { MatChipsModule } from '@angular/material/chips';
+import { PriorityNamePipe } from '@pipes/priority-name.pipe';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,9 @@ import { FilterStatusPipe } from '@pipes/filter-status.pipe';
     MatIconModule,
     MatDialogModule,
     FilterStatusPipe,
+    PriorityNamePipe,
     NgClass,
+    MatChipsModule,
   ],
 })
 export class HomeComponent implements OnInit {
@@ -79,6 +83,7 @@ export class HomeComponent implements OnInit {
   }
 
   removeTask(task: Task): void {
+    this.toastr.info('Tarea eliminada correctamente', 'Tarea eliminada');
     this.todoService.removeTask(task.id);
   }
 }

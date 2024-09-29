@@ -35,52 +35,77 @@
 </section>
 
 <section class="task-grid">
-  <article *ngFor="let task of tasks | filterStatus : status" class="task-card">
-    <header class="task-header">
-      <span class="task-title">{{ task.title }}</span>
-      <button
-        (click)="removeTask(task)"
-        mat-icon-button
-        color="warn"
-        class="delete-task-button"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-    </header>
-    <p class="task-date">{{ task.limitDate | date : "MMMM d, y" }}</p>
-    <div class="task-actions">
-      <button
-        *ngIf="task.completed; else pending"
-        (click)="uncompleteTask(task)"
-        mat-flat-button
-        color="warn"
-        class="task-action-button"
-      >
-        Descompletar
-      </button>
-      <ng-template #pending>
+  <ng-container *ngIf="tasks.length > 0; else noTasks">
+    <article
+      *ngFor="let task of tasks | filterStatus : status"
+      class="task-card"
+      [ngClass]="{
+        low_priority: task.priority === 1,
+        medium_priority: task.priority === 2,
+        high_priority: task.priority === 3
+      }"
+    >
+      <header class="task-header">
+        <span class="task-title">{{ task.title }}</span>
         <button
-          (click)="completeTask(task)"
+          (click)="removeTask(task)"
+          mat-icon-button
+          color="warn"
+          class="delete-task-button"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </header>
+      <span
+        [ngClass]="{
+          chip_low_priority: task.priority === 1,
+          chip_medium_priority: task.priority === 2,
+          chip_high_priority: task.priority === 3
+        }"
+        class="chip"
+      >
+        {{ task.priority | priorityName }}
+      </span>
+      <p class="task-date">
+        {{ task.limitDate | date : "MMMM d, y" }}
+      </p>
+      <div class="task-actions">
+        <button
+          *ngIf="task.completed; else pending"
+          (click)="uncompleteTask(task)"
           mat-flat-button
-          color="primary"
+          color="warn"
           class="task-action-button"
         >
-          Completar
+          Deshacer
         </button>
-      </ng-template>
-    </div>
-    <section class="task-persons">
-      <div *ngFor="let person of task.persons" class="person-item">
-        <span class="person-name">{{ person.name }}</span>
-        <div class="person-skills">
-          <span>Habilidades:</span>
-          <ul class="skill-list">
-            <li *ngFor="let skill of person.skills" class="skill-item">
-              {{ skill.name }}
-            </li>
-          </ul>
-        </div>
+        <ng-template #pending>
+          <button
+            (click)="completeTask(task)"
+            mat-flat-button
+            color="primary"
+            class="task-action-button"
+          >
+            Completar
+          </button>
+        </ng-template>
       </div>
-    </section>
-  </article>
+      <section class="task-persons">
+        <div *ngFor="let person of task.persons" class="person-item">
+          <span class="person-name">{{ person.name }}</span>
+          <div class="person-skills">
+            <span>Habilidades:</span>
+            <ul class="skill-list">
+              <li *ngFor="let skill of person.skills" class="skill-item">
+                {{ skill.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </article>
+  </ng-container>
+  <ng-template #noTasks>
+    <p class="no-tasks-message">No hay tareas para mostrar.</p>
+  </ng-template>
 </section>

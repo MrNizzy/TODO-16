@@ -1,6 +1,6 @@
 .task-list-title {
   font-size: 2em;
-  margin-bottom: 1em;
+  margin: 1rem 0;
   text-align: center;
 }
 
@@ -14,6 +14,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1em;
+  padding: 1em;
 }
 
 .task-card {
@@ -77,6 +78,42 @@
   margin-left: 1em;
 }
 
+.low_priority {
+  background-color: #f8d7da;
+}
+
+.medium_priority {
+  background-color: #fff3cd;
+}
+
+.high_priority {
+  background-color: #d1ecf1;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chip_low_priority {
+  background-color: darken(#f8d7da, 10%);
+  color: #721c24;
+}
+
+.chip_medium_priority {
+  background-color: darken(#fff3cd, 10%);
+  color: #856404;
+}
+
+.chip_high_priority {
+  background-color: darken(#d1ecf1, 10%);
+  color: #0c5460;
+}
+
 .filter {
   display: flex;
   align-items: center;
@@ -86,4 +123,13 @@
   .active {
     background-color: #e2e2e2;
   }
+}
+
+.no-tasks-message {
+  grid-column: 1 / -1;
+  place-content: center;
+  text-align: center;
+  font-size: 1.5em;
+  color: #888;
+  margin-top: 2em;
 }
