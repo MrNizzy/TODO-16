@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { taskData } from '@data/task.data';
 import { Task } from '@interfaces/todo.interface';
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class TodoService {
-  private tasks: Task[] = [];
+  private tasks: Task[] = taskData;
   private taskSubject = new BehaviorSubject<Task[]>(this.tasks);
 
   getTasks() {
