@@ -23,7 +23,8 @@
     "paths": {
       "@interfaces/*": ["src/app/core/interfaces/*"],
       "@services/*": ["src/app/core/services/*"],
-      "@data/*": ["src/app/core/data/*"]
+      "@data/*": ["src/app/core/data/*"],
+      "@pipes/*": ["src/app/core/pipes/*"]
     }
   },
   "angularCompilerOptions": {
