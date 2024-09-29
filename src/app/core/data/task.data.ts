@@ -67,4 +67,37 @@ export const taskData: Task[] = [
       },
     ],
   },
+  {
+    id: 3,
+    title: 'Tarea C',
+    limitDate: '2024-09-31',
+    completed: false,
+    priority: 3,
+    persons: [
+      {
+        name: 'Persona E',
+        age: 60,
+        skills: [
+          {
+            name: 'Skill I',
+          },
+          {
+            name: 'Skill J',
+          },
+        ],
+      },
+      {
+        name: 'Persona F',
+        age: 70,
+        skills: [
+          {
+            name: 'Skill K',
+          },
+          {
+            name: 'Skill L',
+          },
+        ],
+      },
+    ],
+  },
 ];
