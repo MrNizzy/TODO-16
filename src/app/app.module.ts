@@ -9,7 +9,6 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { ToastrModule } from 'ngx-toastr';
-import { FilterStatusPipe } from './core/pipes/filter-status.pipe';
 
 registerLocaleData(localeEs, 'es');
 
