@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>Crear tarea</h1>
+<form [formGroup]="form" (ngSubmit)="createTask()">
+  <mat-dialog-content class="container">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Título de la tarea </mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Fecha límite de la tarea</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="limitDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Prioridad </mat-label>
+      <mat-select formControlName="priority">
+        <mat-option [value]="1">Baja</mat-option>
+        <mat-option [value]="2">Media</mat-option>
+        <mat-option [value]="3">Alta</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div formArrayName="persons" class="persons-section">
+      <h2 class="persons-section__header">Personas asociadas</h2>
+      <div
+        *ngFor="let person of persons.controls; let i = index"
+        [formGroupName]="i"
+        class="persons-section__person"
+      >
+        <div class="persons-section__person__fields">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Nombre completo</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>edad</mat-label>
+            <input matInput formControlName="age" type="number" />
+          </mat-form-field>
+        </div>
+        <div formArrayName="skills" class="persons-section__person__skills">
+          <h3 class="persons-section__person__skills__header">Habilidades</h3>
+          <div
+            *ngFor="let skill of getSkills(i).controls; let j = index"
+            [formGroupName]="j"
+            class="persons-section__person__skills__skill"
+          >
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Nombre de la habilidad</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+            <button mat-raised-button color="warn" (click)="removeSkill(i, j)">
+              Eliminar habilidad
+            </button>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" (click)="addSkill(i)">
+          Agregar habilidad
+        </button>
+        <button mat-raised-button color="warn" (click)="removePerson(i)">
+          Eliminar persona
+        </button>
+      </div>
+      <button mat-raised-button color="primary" (click)="addPerson()">
+        Agregar persona
+      </button>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="actions">
+    <button mat-fab extended mat-dialog-close color="warn">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+    <button mat-fab extended [disabled]="form.invalid" type="submit">
+      <mat-icon>add</mat-icon>
+      <span>Guardar tarea</span>
+    </button>
+  </mat-dialog-actions>
+</form>
