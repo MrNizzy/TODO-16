@@ -1,0 +1,89 @@
+.task-list-title {
+  font-size: 2em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.add-task-button {
+  display: block;
+  margin: 0 auto 2em auto;
+  padding: 0.5em 1em;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1em;
+}
+
+.task-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1em;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-title {
+  font-weight: bold;
+}
+
+.task-date {
+  color: #888;
+  margin-top: 0.5em;
+}
+
+.task-actions {
+  margin-top: 1em;
+}
+
+.task-action-button {
+  margin-right: 0.5em;
+}
+
+.delete-task-button {
+  margin-left: 0.5em;
+}
+
+.task-persons {
+  margin-top: 1em;
+}
+
+.person-item {
+  margin-bottom: 0.5em;
+}
+
+.person-name {
+  font-weight: bold;
+}
+
+.person-skills {
+  margin-top: 0.5em;
+}
+
+.skill-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.skill-item {
+  margin-left: 1em;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+  gap: 0.125rem;
+  .active {
+    background-color: #e2e2e2;
+  }
+}

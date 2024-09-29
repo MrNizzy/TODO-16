@@ -1,1 +1,86 @@
-<p>home works!</p>
+<h1 class="task-list-title">Lista de tareas</h1>
+
+<button
+  (click)="addTask()"
+  mat-flat-button
+  color="primary"
+  class="add-task-button"
+>
+  <mat-icon>add</mat-icon>
+  Agregar tarea
+</button>
+
+<section class="filter">
+  <button
+    mat-button
+    (click)="changeFilter(1)"
+    [ngClass]="{ active: status === 1 }"
+  >
+    Todas
+  </button>
+  <button
+    mat-button
+    (click)="changeFilter(3)"
+    [ngClass]="{ active: status === 3 }"
+  >
+    Pendientes
+  </button>
+  <button
+    mat-button
+    (click)="changeFilter(2)"
+    [ngClass]="{ active: status === 2 }"
+  >
+    Completadas
+  </button>
+</section>
+
+<section class="task-grid">
+  <article *ngFor="let task of tasks | filterStatus : status" class="task-card">
+    <header class="task-header">
+      <span class="task-title">{{ task.title }}</span>
+      <button
+        (click)="removeTask(task)"
+        mat-icon-button
+        color="warn"
+        class="delete-task-button"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </header>
+    <p class="task-date">{{ task.limitDate | date : "MMMM d, y" }}</p>
+    <div class="task-actions">
+      <button
+        *ngIf="task.completed; else pending"
+        (click)="uncompleteTask(task)"
+        mat-flat-button
+        color="warn"
+        class="task-action-button"
+      >
+        Descompletar
+      </button>
+      <ng-template #pending>
+        <button
+          (click)="completeTask(task)"
+          mat-flat-button
+          color="primary"
+          class="task-action-button"
+        >
+          Completar
+        </button>
+      </ng-template>
+    </div>
+    <section class="task-persons">
+      <div *ngFor="let person of task.persons" class="person-item">
+        <span class="person-name">{{ person.name }}</span>
+        <div class="person-skills">
+          <span>Habilidades:</span>
+          <ul class="skill-list">
+            <li *ngFor="let skill of person.skills" class="skill-item">
+              {{ skill.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </article>
+</section>
